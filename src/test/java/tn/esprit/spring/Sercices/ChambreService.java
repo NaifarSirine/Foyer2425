@@ -2,6 +2,7 @@ package tn.esprit.spring.Sercices;
 
 
 
+import org.junit.Test;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.DAO.Entities.Chambre;
 import tn.esprit.spring.DAO.Repositories.ChambreRepository;
@@ -20,7 +21,7 @@ public class ChambreService {
     public List<Chambre> findAll() {
         return chambreRepository.findAll();
     }
-
+@Test
     public Chambre addOrUpdate(Chambre chambre) {
         return chambreRepository.save(chambre);
     }
