@@ -21,6 +21,9 @@ public class Bloc{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idBloc;
     String nomBloc;
+
+
+
     long capaciteBloc;
     
     @ManyToOne
