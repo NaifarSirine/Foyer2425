@@ -23,6 +23,7 @@ public class SpringDocConfig {
     }
 
     public Contact contactAPI() {
+        System.out.println("test");
         Contact contact = new Contact().name("Sirine NAIFAR")
                 .email("sirine.naifer@esprit.tn")
                 .url("https://www.linkedin.com/in/sirinenaifar/");
