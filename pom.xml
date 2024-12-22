@@ -5,7 +5,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
         <version>3.1.5</version>
+=======
+        <version>3.1.7-RELEASE</version>
+>>>>>>> ea0644bea06d690138ec2ed9234cebe919769ce4
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tn.esprit</groupId>
