@@ -5,16 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-<<<<<<< HEAD
         <version>3.1.5</version>
-=======
-        <version>3.1.7-RELEASE</version>
->>>>>>> ea0644bea06d690138ec2ed9234cebe919769ce4
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tn.esprit</groupId>
     <artifactId>Foyer</artifactId>
-        <version>1.4.9-RELEASE</version>
+    <version>1.4.9-RELEASE</version>
     <name>Foyer</name>
     <description>Foyer</description>
     <properties>
@@ -59,12 +55,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- JUnit Jupiter Engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
-
 
         <!-- SpringDoc for OpenAPI -->
         <dependency>
