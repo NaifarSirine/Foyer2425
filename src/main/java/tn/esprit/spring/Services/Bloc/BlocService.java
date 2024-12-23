@@ -67,6 +67,7 @@ public class BlocService implements IBlocService {
     @Override
     public Bloc affecterChambresABloc(List<Long> numChambre, String nomBloc) {
         //1
+        System.out.println("test");
         Bloc b = repo.findByNomBloc(nomBloc);
         List<Chambre> chambres = new ArrayList<>();
         for (Long nu : numChambre) {
