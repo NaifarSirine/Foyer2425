@@ -3,7 +3,7 @@ name: Version Increment and Build
 on:
   push:
     branches:
-      - oussama
+      - oussama  # Monitor the 'oussama' branch for changes
 
 jobs:
   increment_version:
@@ -15,25 +15,20 @@ jobs:
 
       - name: Get current version and increment
         run: |
-          VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
+          VERSION=$(grep -oPm1 "(?<=<version>)[^<]+(?=</version>)" pom.xml)
           echo "Current version: $VERSION"
-
           VERSION_NUMBER=$(echo $VERSION | sed -E 's/([0-9]+\.[0-9]+\.[0-9]+)-RELEASE/\1/')
           IFS='.' read -r -a VERSION_ARRAY <<< "$VERSION_NUMBER"
           VERSION_ARRAY[2]=$((VERSION_ARRAY[2] + 1))
           NEW_VERSION="${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}.${VERSION_ARRAY[2]}-RELEASE"
-
           sed -i "s#<version>$VERSION</version>#<version>$NEW_VERSION</version>#" pom.xml
           echo "Updated version to $NEW_VERSION"
 
-      - name: Commit and push the updated version
+      - name: Commit the updated version
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          
           git pull origin oussama
-          
           git add pom.xml
-          git status
-          git commit -m "Bump version to $NEW_VERSION" || echo "No changes to commit"
+          git commit -m "Bump version to $NEW_VERSION" || echo "No changes to commit."
           git push origin oussama
