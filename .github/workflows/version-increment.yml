@@ -1,4 +1,4 @@
-fixed name: Version Increment and Build
+name: Version Increment and Build
 
 on:
   push:
