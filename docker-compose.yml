@@ -2,6 +2,28 @@
 version: '3.8'
 
 services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql-data:
+
+
   sonarqube:
     image: sonarqube:community
     container_name: sonarqube
@@ -12,6 +34,7 @@ services:
       - 'SonarQube_data:/opt/SonarQube/data'
       - 'SonarQube_extensions:/opt/SonarQube/extensions'
       - 'SonarQube_logs:/opt/SonarQube/logs'
+
 
   nexus:
     image: sonatype/nexus3
