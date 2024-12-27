@@ -3,7 +3,9 @@ package tn.esprit.spring.Services.Etudiant;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.DAO.Entities.Etudiant;
+import tn.esprit.spring.DAO.Entities.Reservation;
 import tn.esprit.spring.DAO.Repositories.EtudiantRepository;
+import tn.esprit.spring.DAO.Repositories.ReservationRepository;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EtudiantService implements IEtudiantService {
     EtudiantRepository repo;
+    ReservationRepository reservationRepository;
 
     @Override
     public Etudiant addOrUpdate(Etudiant e) {
@@ -40,5 +43,30 @@ public class EtudiantService implements IEtudiantService {
     @Override
     public List<Etudiant> selectJPQL(String nom) {
         return repo.selectJPQL(nom);
+    }
+
+    @Override
+    public void affecterReservationAEtudiant
+            (String idR, String nomE, String prenomE) {
+        // ManyToMany: Reservation(Child) -- Etudiant(Parent)
+        // 1- Récupérer les objets
+        Reservation res= reservationRepository.findById(idR).get();
+        Etudiant et= repo.getByNomEtAndPrenomEt(nomE,prenomE);
+        // 2- Affectation: On affecte le child au parent
+        et.getReservations().add(res);
+        // 3- Save du parent
+        repo.save(et);
+    }
+    @Override
+    public void desaffecterReservationAEtudiant
+            (String idR, String nomE, String prenomE) {
+        // ManyToMany: Reservation(Child) -- Etudiant(Parent)
+        // 1- Récupérer les objets
+        Reservation res= reservationRepository.findById(idR).get();
+        Etudiant et= repo.getByNomEtAndPrenomEt(nomE,prenomE);
+        // 2- Affectation: On desaffecte le child au parent
+        et.getReservations().remove(res);
+        // 3- Save du parent
+        repo.save(et);
     }
 }

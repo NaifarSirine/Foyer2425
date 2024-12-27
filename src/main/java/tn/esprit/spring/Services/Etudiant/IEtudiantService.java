@@ -11,4 +11,6 @@ public interface IEtudiantService {
     void deleteById(long id);
     void delete(Etudiant e);
     List<Etudiant> selectJPQL(String nom);
+    void affecterReservationAEtudiant(String idR,String nomE, String prenomE);
+    void desaffecterReservationAEtudiant(String idR, String nomE, String prenomE);
 }

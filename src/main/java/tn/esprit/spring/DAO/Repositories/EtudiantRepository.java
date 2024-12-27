@@ -37,6 +37,7 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
 
 
+    Etudiant getByNomEtAndPrenomEt(String nom, String prenom);
 
 
     // select e from Etudiant e where e.nomEt = ... Or e.prenomEt=...

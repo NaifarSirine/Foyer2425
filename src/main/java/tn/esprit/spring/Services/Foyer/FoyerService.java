@@ -52,12 +52,6 @@ public class FoyerService implements IFoyerService {
         return universiteRepository.save(u);
     }
 
-    @Override
-    public Universite desaffecterFoyerAUniversite(long idUniversite) {
-        Universite u = universiteRepository.findById(idUniversite).get(); // Parent
-        u.setFoyer(null);
-        return universiteRepository.save(u);
-    }
 
     @Override
     public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
@@ -103,5 +97,13 @@ public class FoyerService implements IFoyerService {
         u.setFoyer(f);
         return universiteRepository.save(u);
     }
+
+    @Override
+    public Universite desaffecterFoyerAUniversite(long idUniversite) {
+        Universite u = universiteRepository.findById(idUniversite).get(); // Parent
+        u.setFoyer(null);
+        return universiteRepository.save(u);
+    }
+
 
 }

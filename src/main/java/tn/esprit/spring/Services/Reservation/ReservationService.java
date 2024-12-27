@@ -71,14 +71,16 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant(Long numChambre, long cin) {
+    public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant
+            (Long numChambre, long cin) {
         // Récupération de la chambre et de l'étudiant
         Chambre chambre = chambreRepository.findByNumeroChambre(numChambre);
         Etudiant etudiant = etudiantRepository.findByCin(cin);
 
         // Compter le nombre de réservations existantes
         int nombreReservations = chambreRepository.
-                countReservationsByIdChambreAndReservationsAnneeUniversitaireBetween(chambre.getIdChambre(), getDateDebutAU(), getDateFinAU());
+                countReservationsByIdChambreAndReservationsAnneeUniversitaireBetween
+                        (chambre.getIdChambre(), getDateDebutAU(), getDateFinAU());
 
         // Vérification de la capacité de la chambre
         boolean ajout = false;
